@@ -1,0 +1,39 @@
+void aux(vector<int>&num,int st,int end,vector<vector<int>>&res,vector<int>r,int k,int n)
+{
+    if(k<0||k>n)
+    {
+        return;
+    }
+    else if(k==0)
+    {
+        res.push_back(r);
+        return;
+    }
+    else
+    {
+        for(int i=st;i<end;i++)
+        {
+                r.push_back(num[i]);
+                aux(num,i+1,end,res,r,k-1,n);
+                //backtrack
+                r.pop_back();
+        }
+    }
+}
+vector<vector<int> > Solution::combine(int n, int k)
+{
+    // Do not write main() function.
+    // Do not read input, instead use the arguments to the function.
+    // Do not print the output, instead return values as specified
+    // Still have a doubt. Checkout www.interviewbit.com/pages/sample_codes/ for more details
+
+    vector<int>num;
+    vector<vector<int>>res;
+    vector<int>r;
+    for(int i=1;i<=n;i++)
+    {
+        num.push_back(i);
+    }
+    aux(num,0,num.size(),res,r,k,n);
+    return res;
+}
